@@ -18,6 +18,7 @@ EchoSync is a real-time chat application that enables users to communicate insta
 - Production-ready build and deployment support
 
 ## Folder Structure
+```
 ├── backend
 │ ├── src/
 │ ├── package.json
@@ -30,14 +31,14 @@ EchoSync is a real-time chat application that enables users to communicate insta
 ├── .env
 ├── README.md
 └── LICENSE
-
+```
 
 ## Environment Variables
 
 Create `.env` files in the root, `backend/`, and `frontend/` directories to securely store your configuration details.
 
 ### Sample `.env` for Backend
-
+```
 MONGODB_URI=your_mongodb_uri
 PORT=5001
 JWT_SECRET=your_jwt_secret
@@ -47,35 +48,37 @@ CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 
 NODE_ENV=development
-
+```
 ### Sample `.env` for Frontend (Vite)
+```
 VITE_API_BASE_URL=http://localhost:5001/api
-
+```
 
 ## Getting Started
 
 Follow the steps below to run the application locally.
 
 ### 1. Clone the Repository
-
+```
 git clone https://github.com/ManjunathV007/EchoSync
 cd EchoSync
-
+```
 ### 2. Install Dependencies
 
 #### Backend
-
+```
 cd backend
 npm install or npm i
 npm start
-
+```
 #### Frontend
 
 Open a new terminal
+```
 cd frontend
 npm install
 npm run dev
-
+```
 
 ## Deployment
 
