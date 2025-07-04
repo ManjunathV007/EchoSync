@@ -1,0 +1,56 @@
+
+previews:
+  - key: "main"
+    pr:
+      autoDeploy: true
+      autoDestroy: true
+      base: "main"
+      head: "main"
+      wait: true
+
+services:
+  - name: "backend"
+    type: "web"
+    env: "node"
+    repo: "https://github.com/your-repo/echo-sync.git" # Replace with your repository URL
+    branch: "main"
+    healthCheckPath: "/api/auth/health"
+    envVars:
+      - key: "NODE_VERSION"
+        value: "18"
+      - key: "PORT"
+        value: "5000"
+      - key: "MONGO_URI"
+        fromDatabase:
+          name: "echosync-db"
+          property: "connectionString"
+      - key: "JWT_SECRET"
+        generateValue: true
+      - key: "CLOUDINARY_CLOUD_NAME"
+        value: "test_cloud_name"
+      - key: "CLOUDINARY_API_KEY"
+        value: "123456789012345"
+      - key: "CLOUDINARY_API_SECRET"
+        value: "test_cloudinary_secret"
+    build:
+      - command: "npm install"
+    start:
+      - command: "npm start"
+
+  - name: "frontend"
+    type: "static"
+    env: "node"
+    repo: "https://github.com/your-repo/echo-sync.git" # Replace with your repository URL
+    branch: "main"
+    build:
+      - command: "npm install && npm run build"
+    staticPublishPath: "./dist"
+    routes:
+      - type: "rewrite"
+        source: "/api/*"
+        destination: "https://your-backend-url.onrender.com/api/*" # Replace with your backend URL
+
+databases:
+  - name: "echosync-db"
+    databaseName: "echosync"
+    user: "echosync_user"
